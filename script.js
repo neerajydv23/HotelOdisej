@@ -25,6 +25,24 @@ ScrollTrigger.scrollerProxy("#main", {
 ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
+document.addEventListener("wheel",function(dets){
+  if(dets.offsetY >400){
+    if(dets.deltaY > 0){
+      gsap.to("#nav",{
+        top:"-100px",
+        duration:0.3,
+        ease:Power0.easeNone,
+      })
+    }
+  }
+  if(dets.deltaY < 0){
+    gsap.to("#nav",{
+      top:"0px",
+      duration:0.3,
+      ease:Power0.easeNone,
+    })
+  }
+})
 }
 init();
 // Swiper js ka code 
@@ -40,8 +58,20 @@ var swiper = new Swiper(".mySwiper", {
   },
 });
 
+gsap.to("#nav svg",{
+  transform: `translateY(0%) scale(0.15)`,
+  ease: Power0.easeNone,
+  scrollTrigger:{
+    scroller:"#main",
+    trigger:"#nav",
+    start:"top -5%",
+    end:"top -10%",
+    // markers:true,
+    scrub:1
+  }
+})
 var tl =gsap.timeline();
-tl.from("#page1 svg",{
+tl.from("#nav svg",{
     opacity:0,
     y:-40,
     duration:0.7,
@@ -54,7 +84,7 @@ tl.from("#page1 svg",{
     delay:-0.1,
     ease: Power4.easeOut
 })
-.from("#nav",{
+.from("#nav-part1,#nav-part2",{
     y:-50,
     opacity:0,
     delay:-0.4,

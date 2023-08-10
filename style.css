@@ -37,6 +37,12 @@ body {
     margin-bottom: 4px;
 }
 
+#nav svg {
+    fill: #434B34;
+    z-index: 9;
+    position: absolute;
+    transform: translateY(20%) scale(0.25);
+}
 #nav-part2 button {
     padding: 7px 15px;
     font-weight: 500;
@@ -59,13 +65,6 @@ body {
     position: relative;
 }
 
-#page1 svg {
-    scale: 0.25;
-    fill: #434B34;
-    z-index: 9;
-    position: absolute;
-    top: -15%;
-}
 
 #page1 img {
     height: 100%;
